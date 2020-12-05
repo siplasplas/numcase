@@ -1,9 +1,8 @@
 #include "ChebyshevGauss.h"
-#include <cmath>
 #include <cstdint>
 #include <exception>
 
-double ChebyshevGauss::findC(int j, int N) {
+float_type ChebyshevGauss::findC(int j, int N) {
     float_type Pi;
     Pi = M_PI;
     float_type sum = 0;
@@ -27,7 +26,7 @@ int highestOneBit(uint32_t i) {
     return i - (i >> 1);
 }
 
-double ChebyshevGauss::findC(int degree) {
+float_type ChebyshevGauss::findC(int degree) {
     int n = highestOneBit(degree) * 2;
     if (n == 0) n = 1;
     float_type prev = 0;

@@ -18,4 +18,4 @@ add_executable(example main.cpp ${LDIR}Dekker.cpp ${LDIR}Func.cpp
 
 target_include_directories(example PUBLIC ${LDIR})
 
-target_link_libraries(example mpfr)
+target_link_libraries(example gmp mpfr)

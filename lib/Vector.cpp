@@ -1,11 +1,10 @@
 #include "Vector.h"
-#include <cmath>
 
 Vector::Vector(int rows):rows(rows) {
     v.resize(rows);
 }
 
-Vector::Vector(const std::vector<double> &initArr) {
+Vector::Vector(const std::vector<float_type> &initArr) {
     v = initArr;
     rows = v.size();
 }
@@ -15,40 +14,40 @@ Vector Vector::clone() {
     return result;
 }
 
-double& Vector::operator[](int row) {
+float_type& Vector::operator[](int row) {
     return v[row];
 }
 
-double Vector::at(int row) const {
+float_type Vector::at(int row) const {
     return v[row];
 }
 
-double Vector::operator[](int row) const {
+float_type Vector::operator[](int row) const {
     return at(row);
 }
 
 void Vector::swapRows(int r1, int r2) {
     if (r1 == r2) return;
-    double tmp = v[r1];
+    float_type tmp = v[r1];
     v[r1] = v[r2];
     v[r2] = tmp;
 }
 
-double Vector::norm() {
-    double sum = 0;
+float_type Vector::norm() {
+    float_type sum = 0;
     for (int i = 0; i < rows; i++)
     {
-        double d = v[i];
+        float_type d = v[i];
         sum += d * d;
     }
     return sqrt(sum);
 }
 
-double Vector::norm(const Vector &weights) {
-    double sum = 0;
+float_type Vector::norm(const Vector &weights) {
+    float_type sum = 0;
     for (int i = 0; i < rows; i++)
     {
-        double d = v[i] * weights[i];
+        float_type d = v[i] * weights[i];
         sum += d * d;
     }
     return sqrt(sum);
@@ -57,7 +56,7 @@ double Vector::norm(const Vector &weights) {
 std::string Vector::toString() {
     std::string str = "[";
     bool first = true;
-    for (double b : v) {
+    for (float_type b : v) {
         if (!first) str +=",";
         str += std::to_string(b);
         first = false;

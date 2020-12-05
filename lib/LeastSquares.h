@@ -3,7 +3,7 @@
 
 class LeastSquares {
 public:
-    double a,b;
+    float_type a,b;
     void compute(const Vector &X, const Vector &Y);
 };
 

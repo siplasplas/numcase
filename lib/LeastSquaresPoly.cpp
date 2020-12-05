@@ -1,6 +1,5 @@
 #include "LeastSquaresPoly.h"
 #include <cassert>
-#include <cmath>
 
 Poly LeastSquaresPoly::compute(const Vector &X, const Vector &Y, int deg) {
     assert(X.getRows() == Y.getRows());

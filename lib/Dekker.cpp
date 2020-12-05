@@ -1,10 +1,9 @@
-#include <cmath>
 #include <cassert>
 #include "Dekker.h"
 
 //https://bytes.com/topic/c/answers/670460-machine-epsilon
 #define FLT_EPSILON 1.19209290e-07F // float 24-1 bit
-#define DBL_EPSILON 2.2204460492503131e-16 // double 53-1
+#define DBL_EPSILON 2.2204460492503131e-16 // float_type 53-1
 #define LDBL_EPSILON 1.084202172485504434007452e-19L //float_type 64-1 bit
 
 #define DIFFSIGN(a,b) (a <= 0 && b >= 0 || a >= 0 && b <= 0)

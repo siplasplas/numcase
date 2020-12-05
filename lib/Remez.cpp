@@ -13,7 +13,7 @@ void Remez::FindExtremes(std::vector<float_type> &extremes, const Poly &poly, Fl
     extremes[0] = -1;
     int cnt = 1;
     float_type tmp = 1;
-    Flambda h = [poly,func](double x ) {
+    Flambda h = [poly,func](float_type x ) {
         return poly.dhorner(x) - func(x);
     };
     while (x<tmp) {
@@ -69,7 +69,7 @@ Poly Remez::Refine(const Poly &given, const Function &func, bool relative) {
         FindExtremes(extremes, result, func.dr);
         float_type MinDiff = numeric_limits<float_type>::max();
         float_type MaxDiff = 0;
-        Flambda h = [result,func](double x ) {
+        Flambda h = [result,func](float_type x ) {
             return result.horner(x) - func.r(x);
         };
         for (int i = 0; i < extremes.size(); i++) {

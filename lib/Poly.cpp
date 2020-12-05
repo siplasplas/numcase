@@ -3,12 +3,12 @@
 #include <string>
 #include <algorithm>
 
-Poly::Poly(int deg, double highest): deg(deg) {
+Poly::Poly(int deg, float_type highest): deg(deg) {
     P.resize(deg+1);
     P[deg] = highest;
 }
 
-Poly Poly::operator*(double d) {
+Poly Poly::operator*(float_type d) {
     Poly result(deg);
     for (int i=0; i<=deg; i++)
         result.P[i] = P[i] * d;
@@ -19,7 +19,7 @@ Poly Poly::operator+(const Poly &other) {
     int resdeg = std::max(deg, other.deg);
     Poly result(resdeg);
     for (int i=0; i<=resdeg; i++) {
-        int sum;
+        float_type sum;
         if (i>deg) sum = other.P[i];
         else if (i>other.deg) sum = P[i];
         else sum = P[i] + other.P[i];
@@ -44,7 +44,7 @@ Poly Poly::operator-(const Poly &other) {
     int resdeg = std::max(deg, other.deg);
     Poly result(resdeg);
     for (int i=0; i<=resdeg; i++) {
-        int diff;
+        float_type diff;
         if (i>deg) diff = -other.P[i];
         else if (i>other.deg) diff = P[i];
         else diff = P[i] - other.P[i];
@@ -64,7 +64,7 @@ int Poly::getDeg() const {
     return deg;
 }
 
-double Poly::horner(double x) const{
+float_type Poly::horner(float_type x) const{
     float_type result = P[deg];
     for (int i = deg - 1; i >= 0; i--)
     {

@@ -2,15 +2,15 @@
 #include "Vector.h"
 
 class Matrix {
-    std::vector<double> v;
+    std::vector<float_type> v;
     int rows;
     int cols;
     std::vector<int> swap;
 public:
     Matrix(int rows, int cols);
-    Matrix(int rows, int cols, const std::vector<double> &initArr);
-    double& at(int row, int col);
-    double at(int row, int col) const;
+    Matrix(int rows, int cols, const std::vector<float_type> &initArr);
+    float_type& at(int row, int col);
+    float_type at(int row, int col) const;
     Matrix operator+(const Matrix &other);
     Matrix operator-(const Matrix &other);
     Vector operator*(const Vector &vec);

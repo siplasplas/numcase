@@ -9,13 +9,13 @@ class Poly {
     std::vector<float_type> P;
 public:
     Poly(){};
-    Poly(int deg, double highest=1);
+    Poly(int deg, float_type highest=1);
     Poly(const std::vector<float_type> &initArr);
-    Poly operator*(double d);
+    Poly operator*(float_type d);
     Poly operator+(const Poly &other);
     void operator+=(const Poly &other);
     Poly operator-(const Poly &other);
-    double horner(double x) const;
+    float_type horner(float_type x) const;
     float_type dhorner(float_type x) const;
     int getDeg() const;
     Poly up();

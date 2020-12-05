@@ -2,7 +2,7 @@
 #include <cassert>
 
 void LeastSquares::compute(const Vector &X, const Vector &Y) {
-    double Sx = 0, Sy = 0, Sxx = 0, Sxy = 0;
+    float_type Sx = 0, Sy = 0, Sxx = 0, Sxy = 0;
     int n = X.getRows();
     assert(Y.getRows()==n);
     for (int i = 0; i < n; i++) {
@@ -11,7 +11,7 @@ void LeastSquares::compute(const Vector &X, const Vector &Y) {
         Sxx = Sxx + X[i] * X[i];
         Sxy = Sxy + X[i] * Y[i];
     }
-    double Delta = Sx * Sx - Sxx * n;
+    float_type Delta = Sx * Sx - Sxx * n;
     a = (Sx * Sy - Sxy * n) / Delta;
     b = (Sx * Sxy - Sxx * Sy) / Delta;
 }
