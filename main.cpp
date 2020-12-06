@@ -96,5 +96,6 @@ void testNewton() {
 }
 
 int main() {
+    setDefPrec();
     remezTest();
 }

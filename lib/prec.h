@@ -1,6 +1,6 @@
 #pragma once
 
-//#define USE_MP
+#define USE_MP
 
 #ifdef USE_MP
 #include <mpcpp/mpfrcpp.h>
@@ -15,5 +15,11 @@ const int PREC_BITS=53;
 typedef double float_type;
 const int PREC_BITS=53;
 #endif
+
+inline void setDefPrec() {
+#ifdef USE_MP
+    set_default_prec(PREC_BITS);
+#endif
+}
 
 const float_type machineEps = pow(2,-(PREC_BITS-1));
