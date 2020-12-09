@@ -1,10 +1,6 @@
 #include <cassert>
 #include "Dekker.h"
-
-//https://bytes.com/topic/c/answers/670460-machine-epsilon
-#define FLT_EPSILON 1.19209290e-07F // float 24-1 bit
-#define DBL_EPSILON 2.2204460492503131e-16 // float_type 53-1
-#define LDBL_EPSILON 1.084202172485504434007452e-19L //float_type 64-1 bit
+#include <iostream>
 
 #define DIFFSIGN(a,b) (a <= 0 && b >= 0 || a >= 0 && b <= 0)
 
@@ -20,9 +16,9 @@ float_type hfun(float_type b, float_type c)
 {
     assert(b != c);
     if (c > b)
-        return b + fabs(b*DBL_EPSILON);
+        return b + fabs(b*machineEps);
     else
-        return b - fabs(b*DBL_EPSILON);
+        return b - fabs(b*machineEps);
 }
 
 float_type mfun(float_type b, float_type c)
@@ -67,7 +63,7 @@ float_type wfun(float_type l, float_type b, float_type c)
     {
         return l;
     }
-    else if (fabs(l - b) <= fabs(b*DBL_EPSILON) && !between(l, b, m))
+    else if (fabs(l - b) <= fabs(b*machineEps) && !between(l, b, m))
     {
         return h;
     }
@@ -119,25 +115,25 @@ float_type Dekker::find(float_type x0, float_type x1, float_type eps)
     {
         itercnt++;
         age++;
-        if (fabs(b - c) <= (0.5 + 2 * DBL_EPSILON)*(fabs(bp - cp) + fabs(b)*DBL_EPSILON))
+        if (fabs(b - c) <= (0.5 + 2 * machineEps)*(fabs(bp - cp) + fabs(b)*machineEps))
             age = 1;
         xp = x;
         if (itercnt == 2)
         {
             lambda = lfun(b, a, fb, fa);
-            if (fabs(lambda - b) < fabs(b*DBL_EPSILON)) break;
+            if (fabs(lambda - b) < fabs(b*machineEps)) break;
             x = wfun(lambda, b, c);
         }
         else if (itercnt >= 3 && age <= 3)
         {
             rho = rfun(b, a, d, fb, fa, fd);
-            if (fabs(rho - b) < fabs(b*DBL_EPSILON)) break;
+            if (fabs(rho - b) < fabs(b*machineEps)) break;
             x = wfun(rho, b, c);
         }
         else if (itercnt >= 3 && age == 4)
         {
             rho = rfun(b, a, d, fb, fa, fd);
-            if (fabs(rho - b) < fabs(b*DBL_EPSILON)) break;
+            if (fabs(rho - b) < fabs(b*machineEps)) break;
             x = wfun(2 * rho - b, b, c);
         }
         else

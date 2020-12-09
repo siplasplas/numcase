@@ -8,6 +8,7 @@
 #include "Vector.h"
 #include "Newton.h"
 #include "NewtonMulti.h"
+#include <random>
 
 void remezTest()
 {
@@ -41,7 +42,7 @@ void testElim() {
 }
 
 //temporary unavailable
-/*
+
 void lstest() {
     std::mt19937 mt_rand(0);
     std::uniform_real_distribution<float_type> dist(-0.01,0.01);
@@ -71,7 +72,6 @@ void lsptest() {
     Poly poly1 = lsp.compute(Vector(X),Vector(Y),4);
     std::cout << poly1.toString() << std::endl;
 }
-*/
 
 void testNewton() {
     Newton newt([](float_type x ) {return x*x-2;},[](float_type x ) {return 2*x;});
